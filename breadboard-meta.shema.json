@@ -1,0 +1,38 @@
+{
+    "$schema":"http://json-schema.org/draft-07/schema",
+    "type": "object",
+    "properties": {
+      "templates": {
+        "type": "object",
+        "patternProperties": {
+          "^[a-zA-Z]{1}[a-zA-Z0-9_]*$": {
+            "type": "object",
+            "required": ["template", "file", "variable", "schema"],
+            "properties": {
+              "template": {
+                "type": "string",
+                "title": "Name of the jsonnet function",
+                "pattern": "[a-zA-Z]{1}[a-zA-Z0-9]*"
+              },
+              "file": {
+                "type": "string",
+                "title": "Location of file containing the jsonnet function"
+              },
+              "variable": {
+                "type": "string",
+                "title": "Single word to be visible as type of the component",
+                "pattern": "[a-zA-Z]{1}[a-zA-Z0-9]*"
+              },
+              "schema": {
+                "title": "JSON Schema for object representing the component",
+                "$ref": "https://json-schema.org/draft-07/schema"
+              }
+            }
+          }
+        }
+      }
+    },
+    "required": [
+      "templates"
+    ]
+  }

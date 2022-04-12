@@ -1,0 +1,171 @@
+{
+  "$schema": "breadboard-meta.shema.json",
+  "templates": {
+    "WebApp": {
+      "template": "WebApp",
+      "file": "webapp.libsonnet",
+      "variable": "WebApp",
+      "schema": {
+        "title": "Web application",
+        "description": "Deployment + Service + optional Ingress",
+        "properties": {
+          "args": {
+            "description": "Argumements to pass to the command or second and further arguments passed the the entrypoint script",
+            "title": "Container command arguments",
+            "type": "string"
+          },
+          "cmd": {
+            "description": "The command to run in container or the first argument passed the the entrypoint script",
+            "title": "Container command",
+            "type": "string"
+          },
+          "env": {
+            "description": "String literals to inject as ENV variables",
+            "title": "ENV variables",
+            "type": "object",
+            "patternProperties": {
+              "^[A-Za-z_]{1}[A-Za-z0-9_]*$": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          },
+          "image": {
+            "description": "Location of the image",
+            "title": "Container image",
+            "type": "string"
+          },
+          "ingress": {
+            "description": "Allow access to the service from outside the cluster by the given URL",
+            "title": "Ingress URL",
+            "type": "string"
+          },
+          "port": {
+            "description": "The port that your code inside the container listens to",
+            "title": "Container port",
+            "type": "number"
+          },
+          "replicas": {
+            "description": "Run multiple parallel instances (replicas) of the container",
+            "title": "Pod replicas",
+            "type": "number"
+          },
+          "servicePort": {
+            "description": "Remap container port to another port in order other containers access it",
+            "title": "Service port",
+            "type": "number"
+          }
+        },
+        "required": [
+          "image",
+          "port"
+        ],
+        "type": "object"
+      }
+    },
+    "Worker": {
+      "template": "Worker",
+      "file": "worker.libsonnet",
+      "variable": "Worker",
+      "schema": {
+        "title": "Worker process",
+        "description": "Deployment without Serice",
+        "properties": {
+          "args": {
+            "description": "Argumements to pass to the command or second and further arguments passed the the entrypoint script",
+            "title": "Container command arguments",
+            "type": "string"
+          },
+          "cmd": {
+            "description": "The command to run in container or the first argument passed the the entrypoint script",
+            "title": "Container command",
+            "type": "string"
+          },
+          "env": {
+            "description": "String literals to inject as ENV variables",
+            "title": "ENV variables",
+            "type": "object",
+            "patternProperties": {
+              "^[A-Za-z_]{1}[A-Za-z0-9_]*$": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          },
+          "image": {
+            "description": "Location of the image",
+            "title": "Container image",
+            "type": "string"
+          },
+          "replicas": {
+            "description": "Run multiple parallel instances (replicas) of the container",
+            "title": "Pod replicas",
+            "type": "number"
+          }
+        },
+        "required": [
+          "image"
+        ],
+        "type": "object"
+      }
+    },
+    "StatefulPostgres": {
+      "template": "StatefulPostgres",
+      "file": "postgres.libsonnet",
+      "variable": "Postgres",
+      "schema": {
+        "title": "Stateful PostgreSQL",
+        "description": "StatefulSet + PersistentVolumeClaim",
+        "properties": {
+          "dbName": {
+            "title": "Database name",
+            "type": "string"
+          },
+          "dbPassword": {
+            "title": "Database password",
+            "type": "string"
+          },
+          "dbUser": {
+            "title": "Database user",
+            "type": "string"
+          }
+        },
+        "required": [
+          "dbName",
+          "dbUser",
+          "dbPassword"
+        ],
+        "type": "object"
+      }
+    },
+    "StatelessPostgres": {
+      "template": "StatelessPostgres",
+      "file": "postgres.libsonnet",
+      "variable": "Postgres",
+      "schema": {
+        "title": "Stateless PostgreSQL",
+        "description": "Stateless Postgres Pod without PersistentVolume",
+        "properties": {
+          "dbName": {
+            "title": "Database name",
+            "type": "string"
+          },
+          "dbPassword": {
+            "title": "Database password",
+            "type": "string"
+          },
+          "dbUser": {
+            "title": "Database user",
+            "type": "string"
+          }
+        },
+        "required": [
+          "dbName",
+          "dbUser",
+          "dbPassword"
+        ],
+        "type": "object"
+      }
+    }
+  }
+}
