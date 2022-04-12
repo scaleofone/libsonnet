@@ -177,7 +177,7 @@
         "properties": {
           "port": {
             "title": "SMTP port",
-            "type": "number"
+            "type": "string"
           }
         },
         "type": "object"
