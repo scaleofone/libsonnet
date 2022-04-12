@@ -166,6 +166,58 @@
         ],
         "type": "object"
       }
+    },
+    "Mailhog": {
+      "file": "stub.libsonnet",
+      "template": "Mailhog",
+      "variable": "Mailhog",
+      "schema": {
+        "title": "SMTP relay",
+        "description": "Observe emails sent by your apps",
+        "properties": {
+          "port": {
+            "title": "SMTP port",
+            "type": "number"
+          }
+        },
+        "type": "object"
+      }
+    },
+    "Minio": {
+      "file": "stub.libsonnet",
+      "template": "Minio",
+      "variable": "S3",
+      "schema": {
+        "title": "S3 storage",
+        "description": "S3-compatible storage",
+        "properties": {
+          "bucket": {
+            "title": "Bucket name",
+            "type": "string"
+          },
+          "key": {
+            "title": "Access key",
+            "type": "string"
+          },
+          "secret": {
+            "title": "Accesss secret",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      }
+    },
+    "Redis": {
+      "file": "stub.libsonnet",
+      "template": "Redis",
+      "variable": "Redis",
+      "schema": {
+        "title": "Redis",
+        "description": "Key-Value database for caches, queues, etc",
+        "properties": {
+        },
+        "type": "object"
+      }
     }
   }
 }
